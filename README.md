@@ -37,6 +37,13 @@
 
 ---
 
+Version 1.1 ✨ การปรับปรุงหน้าตาและประสบการณ์ใช้งาน (UI / UX Improvements)
+- **รองรับโหมดมืดอัตโนมัติ (Automatic Dark Mode):** เพิ่มระบบสลับธีมโหมดสว่างและโหมดมืดตามการตั้งค่าของอุปกรณ์โดยอัตโนมัติ (ผ่าน `values-night` และ `drawable-night`)
+- **ป้ายหัวข้อกำกับหลอดโควตา (Quota Bar Labels):** เพิ่มหัวข้อกำกับด้านบนของหลอดแสดงผลแต่ละรอบอย่างชัดเจน ทั้ง **รอบ 5 ชั่วโมง** และ **ขีดจำกัดรายสัปดาห์**
+- **การ์ดแสดงผลสะอาดตาขึ้น (Cleaner Quota Card):** ซ่อน/ตัดข้อความสรุปโควตาแบบซ้ำซ้อนด้านล่างหลอดแสดงผลออก ช่วยให้การ์ดดูคลีนและอ่านข้อมูลได้ง่ายขึ้น
+
+---
+
 ## 📥 วิธีดาวน์โหลดและติดตั้ง
 
 1. ไปที่เมนู **[Releases](../../releases)** ทางด้านขวามือ (หรือด้านล่างหากเปิดผ่านมือถือ)
@@ -71,6 +78,13 @@
 - **📱 Xiaomi Rear Screen Support (Xiaomi 17 Pro Max, 18 Pro Max):** Automatically adapts layout margins and scaling when launched on the rear display via [Magic Rear](https://gitlab.com/896kb/ai-usage-companion/-/releases) (developed by **88896**).
 - **🔄 Automatic Background Sync:** Refreshes your quota data automatically on schedule (every 2 hours) with built-in safeguards against stale or failed network fetches.
 - **🎨 Liquid Glass × Material Design 3 UI:** Translucent pastel glassmorphism cards paired with smooth full-screen touch scrolling.
+
+---
+
+Version 1.1 ✨ UI / UX Improvements
+- **Automatic Dark Mode:** Added automatic theme switching between Light and Dark mode following the device system setting (`values-night` and `drawable-night`).
+- **Quota Bar Labels:** Added clear section headers above each progress bar for **5-Hour Limit** and **Weekly Limit**.
+- **Cleaner Quota Card:** Removed duplicate raw quota summary lines below the progress bars to keep the card clean and easy to scan.
 
 ---
 
