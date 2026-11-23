@@ -28,7 +28,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Gemini Usage"
-                android:textColor="#4F46E5"
+                android:textColor="@color/accent_five_hr"
                 android:textSize="26sp"
                 android:textStyle="bold" />
 
@@ -38,7 +38,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
                 android:text="กำลังซิงค์ข้อมูล..."
-                android:textColor="#64748B"
+                android:textColor="@color/text_secondary"
                 android:textSize="13sp" />
 
             <!-- การ์ด Liquid Glass แสดงหลอดเปอร์เซ็นต์ -->
@@ -58,23 +58,38 @@
                     android:gravity="center_vertical"
                     android:orientation="horizontal">
 
-                    <TextView
-                        android:id="@+id/tvFiveHrSub"
+                    <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="รอบ 5 ชั่วโมง"
-                        android:textColor="#334155"
-                        android:textSize="14sp"
-                        android:textStyle="bold" />
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="รอบ 5 ชั่วโมง"
+                            android:textColor="@color/text_secondary"
+                            android:textSize="12sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/tvFiveHrSub"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="2dp"
+                            android:text="กำลังรอเวลารีเซ็ต..."
+                            android:textColor="@color/text_primary"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
 
                     <TextView
                         android:id="@+id/tvFiveHrMain"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="--%"
-                        android:textColor="#4F46E5"
-                        android:textSize="18sp"
+                        android:textColor="@color/accent_five_hr"
+                        android:textSize="20sp"
                         android:textStyle="bold" />
                 </LinearLayout>
 
@@ -83,7 +98,7 @@
                     style="?android:attr/progressBarStyleHorizontal"
                     android:layout_width="match_parent"
                     android:layout_height="10dp"
-                    android:layout_marginTop="6dp"
+                    android:layout_marginTop="8dp"
                     android:max="100"
                     android:progress="0"
                     android:progressDrawable="@drawable/widget_progress" />
@@ -92,27 +107,42 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="18dp"
+                    android:layout_marginTop="20dp"
                     android:gravity="center_vertical"
                     android:orientation="horizontal">
 
-                    <TextView
-                        android:id="@+id/tvWeeklySub"
+                    <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="ขีดจำกัดรายสัปดาห์"
-                        android:textColor="#334155"
-                        android:textSize="14sp"
-                        android:textStyle="bold" />
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="ขีดจำกัดรายสัปดาห์"
+                            android:textColor="@color/text_secondary"
+                            android:textSize="12sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/tvWeeklySub"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="2dp"
+                            android:text="กำลังรอเวลารีเซ็ต..."
+                            android:textColor="@color/text_primary"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
 
                     <TextView
                         android:id="@+id/tvWeeklyMain"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="--%"
-                        android:textColor="#0284C7"
-                        android:textSize="18sp"
+                        android:textColor="@color/accent_weekly"
+                        android:textSize="20sp"
                         android:textStyle="bold" />
                 </LinearLayout>
 
@@ -121,21 +151,17 @@
                     style="?android:attr/progressBarStyleHorizontal"
                     android:layout_width="match_parent"
                     android:layout_height="10dp"
-                    android:layout_marginTop="6dp"
+                    android:layout_marginTop="8dp"
                     android:max="100"
                     android:progress="0"
                     android:progressDrawable="@drawable/widget_progress_weekly" />
 
-                <!-- ข้อความรายละเอียดดิบ -->
+                <!-- ซ่อนข้อความซ้ำซ้อนด้านล่างเพื่อให้การ์ดคลีนขึ้น -->
                 <TextView
                     android:id="@+id/tvQuotaResult"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:lineSpacingExtra="4dp"
-                    android:text="กำลังรอข้อมูลจากหน้าเว็บ..."
-                    android:textColor="#475569"
-                    android:textSize="13sp" />
+                    android:visibility="gone" />
             </LinearLayout>
 
             <!-- ปุ่มทรงแคปซูล Material 3 -->
@@ -172,7 +198,7 @@
                     android:focusable="true"
                     android:gravity="center"
                     android:text="หน้าล็อกอิน"
-                    android:textColor="#312E81"
+                    android:textColor="@color/pill_tonal_text"
                     android:textSize="14sp"
                     android:textStyle="bold" />
             </LinearLayout>

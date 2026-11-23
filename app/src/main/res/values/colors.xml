@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
+    <color name="text_primary">#1E293B</color>
+    <color name="text_secondary">#64748B</color>
+    <color name="accent_five_hr">#4F46E5</color>
+    <color name="accent_weekly">#0284C7</color>
+    <color name="pill_tonal_text">#312E81</color>
+    <color name="title_grad_start">#4F46E5</color>
+    <color name="title_grad_end">#0284C7</color>
 </resources>

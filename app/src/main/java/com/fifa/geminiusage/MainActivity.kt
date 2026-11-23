@@ -2,7 +2,6 @@ package com.fifa.geminiusage
 
 import android.annotation.SuppressLint
 import android.content.res.Configuration
-import android.graphics.Color
 import android.graphics.LinearGradient
 import android.graphics.Shader
 import android.os.Build
@@ -22,6 +21,7 @@ import android.widget.ProgressBar
 import android.widget.ScrollView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import org.json.JSONTokener
 import java.text.SimpleDateFormat
 import java.util.Date
@@ -79,21 +79,8 @@ class MainActivity : AppCompatActivity() {
         // ปรับระยะขอบอัตโนมัติตามหน้าจอ (จอหน้า vs จอหลัง)
         applyDisplayAdaptiveLayout()
 
-        // ไล่สีข้อความ Gemini Usage จาก Indigo ไป Sky Blue ให้เหมือนโลโก้แอป
-        tvAppTitle.post {
-            val width = tvAppTitle.paint.measureText(tvAppTitle.text.toString())
-            val gradient = LinearGradient(
-                0f, 0f, width, tvAppTitle.textSize,
-                intArrayOf(
-                    Color.parseColor("#4F46E5"),
-                    Color.parseColor("#0284C7")
-                ),
-                null,
-                Shader.TileMode.CLAMP
-            )
-            tvAppTitle.paint.shader = gradient
-            tvAppTitle.invalidate()
-        }
+        // ไล่สีข้อความ Gemini Usage จาก Indigo ไป Sky Blue (ปรับสีอัตโนมัติตาม Light/Dark Mode)
+        applyTitleGradient()
 
         val prefs = getSharedPreferences("gemini_usage_prefs", MODE_PRIVATE)
         val savedText = prefs.getString("last_quota", null)
@@ -154,11 +141,29 @@ class MainActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
         applyDisplayAdaptiveLayout()
+        applyTitleGradient()
     }
 
     override fun onConfigurationChanged(newConfig: Configuration) {
         super.onConfigurationChanged(newConfig)
         applyDisplayAdaptiveLayout()
+        applyTitleGradient()
+    }
+
+    private fun applyTitleGradient() {
+        tvAppTitle.post {
+            val width = tvAppTitle.paint.measureText(tvAppTitle.text.toString())
+            val startColor = ContextCompat.getColor(this, R.color.title_grad_start)
+            val endColor = ContextCompat.getColor(this, R.color.title_grad_end)
+            val gradient = LinearGradient(
+                0f, 0f, width, tvAppTitle.textSize,
+                intArrayOf(startColor, endColor),
+                null,
+                Shader.TileMode.CLAMP
+            )
+            tvAppTitle.paint.shader = gradient
+            tvAppTitle.invalidate()
+        }
     }
 
     // ตรวจจับจอหลัก (displayId == 0) vs จอหลัง (displayId != 0 หรือขนาดจอเล็ก)
@@ -260,11 +265,11 @@ class MainActivity : AppCompatActivity() {
         val weeklyPct = pctMatches.getOrNull(1) ?: 0
 
         tvFiveHrMain.text = if (pctMatches.isNotEmpty()) "$fiveHrPct%" else "--%"
-        tvFiveHrSub.text = resetLines.getOrNull(0) ?: "รอบ 5 ชั่วโมง"
+        tvFiveHrSub.text = resetLines.getOrNull(0) ?: "กำลังรอเวลารีเซ็ต..."
         pbAppFiveHr.progress = fiveHrPct.coerceIn(0, 100)
 
         tvWeeklyMain.text = if (pctMatches.size >= 2) "$weeklyPct%" else "--%"
-        tvWeeklySub.text = resetLines.getOrNull(1) ?: "ขีดจำกัดรายสัปดาห์"
+        tvWeeklySub.text = resetLines.getOrNull(1) ?: "กำลังรอเวลารีเซ็ต..."
         pbAppWeekly.progress = weeklyPct.coerceIn(0, 100)
     }
 
