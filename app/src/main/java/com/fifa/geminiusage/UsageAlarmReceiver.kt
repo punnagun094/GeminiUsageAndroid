@@ -10,7 +10,7 @@ import android.os.Build
 class UsageAlarmReceiver : BroadcastReceiver() {
 
     override fun onReceive(context: Context, intent: Intent?) {
-        // ตั้งรอบถัดไปในอีก 30 นาทีเสมอ
+        // ตั้งรอบถัดไปในอีก 2 ชั่วโมงเสมอ
         scheduleNextSync(context)
 
         try {
