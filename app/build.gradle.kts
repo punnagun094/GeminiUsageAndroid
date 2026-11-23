@@ -31,7 +31,16 @@ android {
         targetCompatibility = JavaVersion.VERSION_11
     }
 }
-
+// ตั้งชื่อไฟล์ APK อัตโนมัติตาม versionName (รองรับ AGP 9.5.2)
+androidComponents {
+    onVariants { variant ->
+        variant.outputs.forEach { output ->
+            if (output is com.android.build.api.variant.impl.VariantOutputImpl) {
+                output.outputFileName.set("GeminiUsage-v${output.versionName.orNull ?: "1.0"}.apk")
+            }
+        }
+    }
+}
 dependencies {
     implementation(libs.androidx.activity.ktx)
     implementation(libs.androidx.appcompat)
