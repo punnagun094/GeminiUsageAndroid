@@ -12,14 +12,22 @@
 
 <table>
   <tr>
-    <td align="center"><b>Main App</b></td>
-    <td align="center"><b>Home Widget</b></td>
-    <td align="center"><b>Xiaomi Rear Screen</b></td>
+    <td align="center" colspan="2"><b>Main App</b></td>
+    <td align="center" rowspan="2"><b>Home Widget</b></td>
+    <td align="center" colspan="2"><b>Rear Screen (Xiaomi)</b></td>
   </tr>
   <tr>
-    <td align="center"><img width="210" alt="Main App" src="https://github.com/user-attachments/assets/1d6988e2-270b-4eac-8f45-ddcd38fa019d" /></td>
-    <td align="center"><img width="210" alt="Home Screen Widget" src="https://github.com/user-attachments/assets/5850729e-91da-469f-8f8b-446fc2b22fde" /></td>
-    <td align="center"><img width="340" alt="Xiaomi Rear Display" src="https://github.com/user-attachments/assets/dd3e3833-d376-4f3e-862a-e9e30160edc4" /></td>
+    <td align="center"><b>Light Mode</b></td>
+    <td align="center"><b>Dark Mode</b></td>
+    <td align="center"><b>Light Mode</b></td>
+    <td align="center"><b>Dark Mode</b></td>
+  </tr>
+  <tr>
+    <td align="center"><img width="150" alt="Main App Light" src="https://github.com/user-attachments/assets/df9ec338-f457-4fa4-9bd7-bdc38596656d" /></td>
+    <td align="center"><img width="150" alt="Main App Dark" src="https://github.com/user-attachments/assets/d16a173c-65b1-4538-b9d2-e42fc87f5500" /></td>
+    <td align="center"><img width="150" alt="Home Screen Widget" src="https://github.com/user-attachments/assets/d43cfdaf-28f9-4190-9dae-e969090d2426" /></td>
+    <td align="center"><img width="220" alt="Rear Screen Light" src="https://github.com/user-attachments/assets/ca6e2e05-eb42-4297-9a21-8037c06ebd6e" /></td>
+    <td align="center"><img width="220" alt="Rear Screen Dark" src="https://github.com/user-attachments/assets/7cf75346-2250-47eb-bc41-485732ea175f" /></td>
   </tr>
 </table>
 
