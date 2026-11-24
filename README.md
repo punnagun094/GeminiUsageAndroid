@@ -12,14 +12,22 @@
 
 <table>
   <tr>
-    <td align="center"><b>Main App</b></td>
-    <td align="center"><b>Home Widget</b></td>
-    <td align="center"><b>Xiaomi Rear Screen</b></td>
+    <td align="center" colspan="2"><b>Main App</b></td>
+    <td align="center" rowspan="2"><b>Home Widget</b></td>
+    <td align="center" colspan="2"><b>Rear Screen (Xiaomi)</b></td>
   </tr>
   <tr>
-    <td align="center"><img width="210" alt="Main App" src="https://github.com/user-attachments/assets/1d6988e2-270b-4eac-8f45-ddcd38fa019d" /></td>
-    <td align="center"><img width="210" alt="Home Screen Widget" src="https://github.com/user-attachments/assets/5850729e-91da-469f-8f8b-446fc2b22fde" /></td>
-    <td align="center"><img width="340" alt="Xiaomi Rear Display" src="https://github.com/user-attachments/assets/dd3e3833-d376-4f3e-862a-e9e30160edc4" /></td>
+    <td align="center"><b>Light Mode</b></td>
+    <td align="center"><b>Dark Mode</b></td>
+    <td align="center"><b>Light Mode</b></td>
+    <td align="center"><b>Dark Mode</b></td>
+  </tr>
+  <tr>
+    <td align="center"><img width="150" alt="Main App Light" src="https://github.com/user-attachments/assets/df9ec338-f457-4fa4-9bd7-bdc38596656d" /></td>
+    <td align="center"><img width="150" alt="Main App Dark" src="https://github.com/user-attachments/assets/d16a173c-65b1-4538-b9d2-e42fc87f5500" /></td>
+    <td align="center"><img width="150" alt="Home Screen Widget" src="https://github.com/user-attachments/assets/d43cfdaf-28f9-4190-9dae-e969090d2426" /></td>
+    <td align="center"><img width="220" alt="Rear Screen Light" src="https://github.com/user-attachments/assets/ca6e2e05-eb42-4297-9a21-8037c06ebd6e" /></td>
+    <td align="center"><img width="220" alt="Rear Screen Dark" src="https://github.com/user-attachments/assets/7cf75346-2250-47eb-bc41-485732ea175f" /></td>
   </tr>
 </table>
 
@@ -34,6 +42,18 @@
 - **📱 รองรับจอด้านหลัง (Xiaomi 17 Pro Max, 18 Pro Max / Rear Display):** ปรับระยะขอบและการแสดงผลอัตโนมัติเมื่อเปิดใช้งานบนหน้าจอด้านหลังผ่านแอป [Magic Rear](https://gitlab.com/896kb/ai-usage-companion/-/releases) (พัฒนาโดย **88896**)
 - **🔄 ซิงค์ข้อมูลเบื้องหลังอัตโนมัติ:** อัปเดตตัวเลขตามรอบเวลาที่ตั้งไว้ (ทุก ๆ 2 ชั่วโมง) พร้อมระบบป้องกันข้อมูลค้างหรือทับค่าผิดพลาดเมื่ออินเทอร์เน็ตหลุด
 - **🎨 ดีไซน์ Liquid Glass × Material Design 3:** หน้าจอโปร่งแสงโทนพาสเทลสบายตา พร้อมแถบเลื่อนแบบเต็มหน้าจอ
+
+---
+
+Version 1.2 🌐 รองรับ 2 ภาษา และปรับปรุงการแสดงผล (Multi-Language Support & Display Fixes)
+- รองรับ 2 ภาษาอัตโนมัติ ไทย–อังกฤษ (Automatic Thai & English Localization): แสดงผลภาษาไทยสำหรับอุปกรณ์ที่ตั้งค่าเป็นภาษาไทย และแสดงผลภาษาอังกฤษสำหรับอุปกรณ์ที่ตั้งค่าเป็นภาษาอื่นทั้งหมด ครอบคลุมทั้งหน้าแอปหลัก ระบบซิงค์เบื้องหลัง และวิดเจ็ตบนหน้าจอโฮม (ผ่าน values และ values-th)
+- ดึงข้อมูลโควตาตามภาษาของเครื่อง (Locale-Aware Usage Fetching): ปรับพารามิเตอร์หน้าเว็บ (?hl=th และ ?hl=en) ให้ดึงข้อความเวลารีเซ็ตตรงตามภาษาที่ใช้งานบนอุปกรณ์โดยอัตโนมัติ
+- แก้ไขสีไอคอน Status Bar ในโหมดสว่าง (Light Mode Status Bar Fix): ปรับสีไอคอนแถบสถานะด้านบนและแถบนำทางด้านล่างให้เป็นสีเข้มอัตโนมัติเมื่อใช้งานในโหมดสว่าง ช่วยให้อ่านเวลาและสถานะแบตเตอรี่ได้ชัดเจนไม่จมกลืนไปกับพื้นหลัง
+
+Version 1.1 ✨ การปรับปรุงหน้าตาและประสบการณ์ใช้งาน (UI / UX Improvements)
+- **รองรับโหมดมืดอัตโนมัติ (Automatic Dark Mode):** เพิ่มระบบสลับธีมโหมดสว่างและโหมดมืดตามการตั้งค่าของอุปกรณ์โดยอัตโนมัติ (ผ่าน `values-night` และ `drawable-night`)
+- **ป้ายหัวข้อกำกับหลอดโควตา (Quota Bar Labels):** เพิ่มหัวข้อกำกับด้านบนของหลอดแสดงผลแต่ละรอบอย่างชัดเจน ทั้ง **รอบ 5 ชั่วโมง** และ **ขีดจำกัดรายสัปดาห์**
+- **การ์ดแสดงผลสะอาดตาขึ้น (Cleaner Quota Card):** ซ่อน/ตัดข้อความสรุปโควตาแบบซ้ำซ้อนด้านล่างหลอดแสดงผลออก ช่วยให้การ์ดดูคลีนและอ่านข้อมูลได้ง่ายขึ้น
 
 ---
 
@@ -71,6 +91,18 @@
 - **📱 Xiaomi Rear Screen Support (Xiaomi 17 Pro Max, 18 Pro Max):** Automatically adapts layout margins and scaling when launched on the rear display via [Magic Rear](https://gitlab.com/896kb/ai-usage-companion/-/releases) (developed by **88896**).
 - **🔄 Automatic Background Sync:** Refreshes your quota data automatically on schedule (every 2 hours) with built-in safeguards against stale or failed network fetches.
 - **🎨 Liquid Glass × Material Design 3 UI:** Translucent pastel glassmorphism cards paired with smooth full-screen touch scrolling.
+
+---
+
+Version 1.2 🌐 Multi-Language Support & Display Fixes
+- Automatic Thai & English Localization: Automatically displays Thai on devices set to Thai and defaults to English for all other system languages across the main app, background sync service, and home screen widget (values and values-th).
+- Locale-Aware Usage Fetching: Dynamically adjusts the usage page parameter (?hl=th / ?hl=en) so quota reset timestamps match the device's active language.
+- Light Mode Status Bar Fix: Updated system bar appearance to automatically switch status bar and navigation bar icons to dark colors in Light Mode, preventing white icons from blending into the bright background.
+
+Version 1.1 ✨ UI / UX Improvements
+- **Automatic Dark Mode:** Added automatic theme switching between Light and Dark mode following the device system setting (`values-night` and `drawable-night`).
+- **Quota Bar Labels:** Added clear section headers above each progress bar for **5-Hour Limit** and **Weekly Limit**.
+- **Cleaner Quota Card:** Removed duplicate raw quota summary lines below the progress bars to keep the card clean and easy to scan.
 
 ---
 
