@@ -45,6 +45,11 @@
 
 ---
 
+Version 1.2 🌐 รองรับ 2 ภาษา และปรับปรุงการแสดงผล (Multi-Language Support & Display Fixes)
+- รองรับ 2 ภาษาอัตโนมัติ ไทย–อังกฤษ (Automatic Thai & English Localization): แสดงผลภาษาไทยสำหรับอุปกรณ์ที่ตั้งค่าเป็นภาษาไทย และแสดงผลภาษาอังกฤษสำหรับอุปกรณ์ที่ตั้งค่าเป็นภาษาอื่นทั้งหมด ครอบคลุมทั้งหน้าแอปหลัก ระบบซิงค์เบื้องหลัง และวิดเจ็ตบนหน้าจอโฮม (ผ่าน values และ values-th)
+- ดึงข้อมูลโควตาตามภาษาของเครื่อง (Locale-Aware Usage Fetching): ปรับพารามิเตอร์หน้าเว็บ (?hl=th และ ?hl=en) ให้ดึงข้อความเวลารีเซ็ตตรงตามภาษาที่ใช้งานบนอุปกรณ์โดยอัตโนมัติ
+- แก้ไขสีไอคอน Status Bar ในโหมดสว่าง (Light Mode Status Bar Fix): ปรับสีไอคอนแถบสถานะด้านบนและแถบนำทางด้านล่างให้เป็นสีเข้มอัตโนมัติเมื่อใช้งานในโหมดสว่าง ช่วยให้อ่านเวลาและสถานะแบตเตอรี่ได้ชัดเจนไม่จมกลืนไปกับพื้นหลัง
+
 Version 1.1 ✨ การปรับปรุงหน้าตาและประสบการณ์ใช้งาน (UI / UX Improvements)
 - **รองรับโหมดมืดอัตโนมัติ (Automatic Dark Mode):** เพิ่มระบบสลับธีมโหมดสว่างและโหมดมืดตามการตั้งค่าของอุปกรณ์โดยอัตโนมัติ (ผ่าน `values-night` และ `drawable-night`)
 - **ป้ายหัวข้อกำกับหลอดโควตา (Quota Bar Labels):** เพิ่มหัวข้อกำกับด้านบนของหลอดแสดงผลแต่ละรอบอย่างชัดเจน ทั้ง **รอบ 5 ชั่วโมง** และ **ขีดจำกัดรายสัปดาห์**
@@ -88,6 +93,11 @@ Version 1.1 ✨ การปรับปรุงหน้าตาและป�
 - **🎨 Liquid Glass × Material Design 3 UI:** Translucent pastel glassmorphism cards paired with smooth full-screen touch scrolling.
 
 ---
+
+Version 1.2 🌐 Multi-Language Support & Display Fixes
+- Automatic Thai & English Localization: Automatically displays Thai on devices set to Thai and defaults to English for all other system languages across the main app, background sync service, and home screen widget (values and values-th).
+- Locale-Aware Usage Fetching: Dynamically adjusts the usage page parameter (?hl=th / ?hl=en) so quota reset timestamps match the device's active language.
+- Light Mode Status Bar Fix: Updated system bar appearance to automatically switch status bar and navigation bar icons to dark colors in Light Mode, preventing white icons from blending into the bright background.
 
 Version 1.1 ✨ UI / UX Improvements
 - **Automatic Dark Mode:** Added automatic theme switching between Light and Dark mode following the device system setting (`values-night` and `drawable-night`).
