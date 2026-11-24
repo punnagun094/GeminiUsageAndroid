@@ -1,3 +1,28 @@
 <resources>
     <string name="app_name">GeminiUsage</string>
+
+    <!-- Main Screen & Status -->
+    <string name="status_syncing">Syncing data…</string>
+    <string name="status_login_required">Please verify your identity / sign in on the webpage</string>
+    <string name="status_reading_page">Reading data from webpage…</string>
+    <string name="status_updating">Updating latest data…</string>
+    <string name="status_waiting_reset">Waiting for reset time…</string>
+    <string name="status_captcha_required">Please complete the CAPTCHA verification on the webpage</string>
+    <string name="status_last_updated">Last updated at %1$s</string>
+    <string name="status_fetch_failed">Unable to fetch data (keeping previous values). Try tapping \'Sign-in Page\'</string>
+
+    <!-- Quota Labels -->
+    <string name="five_hr_cycle">5-Hour Cycle</string>
+    <string name="five_hr_cycle_short">5-Hr Cycle</string>
+    <string name="weekly_limit">Weekly Limit</string>
+    <string name="weekly_limit_short">Weekly</string>
+
+    <!-- Buttons -->
+    <string name="btn_refresh">Refresh</string>
+    <string name="btn_login_page">Sign-in Page</string>
+    <string name="btn_back_home">Back to Home</string>
+
+    <!-- Widget -->
+    <string name="widget_tap_to_refresh">Tap to refresh</string>
+    <string name="widget_updated_at">Updated %1$s</string>
 </resources>

@@ -3,6 +3,7 @@ package com.fifa.geminiusage
 import android.annotation.SuppressLint
 import android.app.Service
 import android.content.Intent
+import android.os.Build
 import android.os.Handler
 import android.os.IBinder
 import android.os.Looper
@@ -21,6 +22,21 @@ class UsageSyncService : Service() {
     private val timeoutRunnable = Runnable { cleanupAndStop() }
 
     override fun onBind(intent: Intent?): IBinder? = null
+
+    private fun isThaiLocale(): Boolean {
+        val currentLocale = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            resources.configuration.locales.takeIf { !it.isEmpty }?.get(0) ?: Locale.getDefault()
+        } else {
+            @Suppress("DEPRECATION")
+            resources.configuration.locale
+        }
+        return currentLocale.language.equals("th", ignoreCase = true)
+    }
+
+    private fun getTargetUrl(): String {
+        val langParam = if (isThaiLocale()) "th" else "en"
+        return "https://gemini.google.com/usage?hl=$langParam"
+    }
 
     @SuppressLint("SetJavaScriptEnabled")
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
@@ -59,7 +75,7 @@ class UsageSyncService : Service() {
                 }
             }
 
-            wv.loadUrl("https://gemini.google.com/usage?hl=th")
+            wv.loadUrl(getTargetUrl())
         } catch (_: Exception) {
             cleanupAndStop()
         }
@@ -72,9 +88,13 @@ class UsageSyncService : Service() {
             (function() {
                 const text = document.body.innerText || "";
                 const lines = text.split('\n').map(l => l.trim()).filter(l => l.length > 0);
-                const matched = lines.filter(l => 
-                    l.includes('%') || l.includes('รีเซ็ต') || l.includes('Reset') || l.includes('ชั่วโมง') || l.includes('สัปดาห์')
-                );
+                const matched = lines.filter(l => {
+                    const lower = l.toLowerCase();
+                    return l.includes('%') ||
+                        l.includes('รีเซ็ต') || lower.includes('reset') ||
+                        l.includes('ชั่วโมง') || lower.includes('hour') ||
+                        l.includes('สัปดาห์') || lower.includes('week');
+                });
                 return matched.length > 0 ? matched.join('\n') : "";
             })();
         """.trimIndent()

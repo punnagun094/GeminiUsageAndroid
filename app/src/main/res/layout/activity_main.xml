@@ -37,7 +37,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
-                android:text="กำลังซิงค์ข้อมูล..."
+                android:text="@string/status_syncing"
                 android:textColor="@color/text_secondary"
                 android:textSize="13sp" />
 
@@ -67,7 +67,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="รอบ 5 ชั่วโมง"
+                            android:text="@string/five_hr_cycle"
                             android:textColor="@color/text_secondary"
                             android:textSize="12sp"
                             android:textStyle="bold" />
@@ -77,7 +77,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="2dp"
-                            android:text="กำลังรอเวลารีเซ็ต..."
+                            android:text="@string/status_waiting_reset"
                             android:textColor="@color/text_primary"
                             android:textSize="14sp"
                             android:textStyle="bold" />
@@ -120,7 +120,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="ขีดจำกัดรายสัปดาห์"
+                            android:text="@string/weekly_limit"
                             android:textColor="@color/text_secondary"
                             android:textSize="12sp"
                             android:textStyle="bold" />
@@ -130,7 +130,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="2dp"
-                            android:text="กำลังรอเวลารีเซ็ต..."
+                            android:text="@string/status_waiting_reset"
                             android:textColor="@color/text_primary"
                             android:textSize="14sp"
                             android:textStyle="bold" />
@@ -182,7 +182,7 @@
                     android:clickable="true"
                     android:focusable="true"
                     android:gravity="center"
-                    android:text="รีเฟรชค่า"
+                    android:text="@string/btn_refresh"
                     android:textColor="#FFFFFF"
                     android:textSize="14sp"
                     android:textStyle="bold" />
@@ -197,7 +197,7 @@
                     android:clickable="true"
                     android:focusable="true"
                     android:gravity="center"
-                    android:text="หน้าล็อกอิน"
+                    android:text="@string/btn_login_page"
                     android:textColor="@color/pill_tonal_text"
                     android:textSize="14sp"
                     android:textStyle="bold" />
@@ -229,7 +229,7 @@
             android:focusable="true"
             android:gravity="center"
             android:paddingHorizontal="20dp"
-            android:text="กลับหน้าหลัก"
+            android:text="@string/btn_back_home"
             android:textColor="#FFFFFF"
             android:textSize="14sp"
             android:textStyle="bold" />

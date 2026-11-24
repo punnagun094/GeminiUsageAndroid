@@ -2,6 +2,7 @@ package com.fifa.geminiusage
 
 import android.annotation.SuppressLint
 import android.content.res.Configuration
+import android.graphics.Color
 import android.graphics.LinearGradient
 import android.graphics.Shader
 import android.os.Build
@@ -20,8 +21,11 @@ import android.widget.LinearLayout
 import android.widget.ProgressBar
 import android.widget.ScrollView
 import android.widget.TextView
+import androidx.activity.SystemBarStyle
+import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import androidx.core.view.WindowCompat
 import org.json.JSONTokener
 import java.text.SimpleDateFormat
 import java.util.Date
@@ -45,15 +49,29 @@ class MainActivity : AppCompatActivity() {
     private lateinit var tvWeeklySub: TextView
     private lateinit var pbAppWeekly: ProgressBar
 
-    private val targetUrl = "https://gemini.google.com/usage?hl=th"
-
     private var touchStartX = 0f
     private var touchStartY = 0f
     private var lastTouchY = 0f
     private var isDraggingScroll = false
 
+    private fun isThaiLocale(): Boolean {
+        val currentLocale = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            resources.configuration.locales.takeIf { !it.isEmpty }?.get(0) ?: Locale.getDefault()
+        } else {
+            @Suppress("DEPRECATION")
+            resources.configuration.locale
+        }
+        return currentLocale.language.equals("th", ignoreCase = true)
+    }
+
+    private fun getTargetUrl(): String {
+        val langParam = if (isThaiLocale()) "th" else "en"
+        return "https://gemini.google.com/usage?hl=$langParam"
+    }
+
     @SuppressLint("SetJavaScriptEnabled")
     override fun onCreate(savedInstanceState: Bundle?) {
+        applySystemBarAppearance()
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
@@ -106,13 +124,13 @@ class MainActivity : AppCompatActivity() {
 
                 if (currentUrl.contains("accounts.google.com") || currentUrl.contains("/sorry/")) {
                     webContainer.visibility = View.VISIBLE
-                    tvStatus.text = "กรุณายืนยันตัวตน / ล็อกอินในหน้าเว็บ"
+                    tvStatus.text = getString(R.string.status_login_required)
                     return
                 }
 
                 if (currentUrl.contains("gemini.google.com/usage")) {
                     webContainer.visibility = View.GONE
-                    tvStatus.text = "กำลังอ่านค่าจากหน้าเว็บ..."
+                    tvStatus.text = getString(R.string.status_reading_page)
                     Handler(Looper.getMainLooper()).postDelayed({
                         scrapeUsageData()
                     }, 2500)
@@ -121,13 +139,13 @@ class MainActivity : AppCompatActivity() {
         }
 
         btnRefresh.setOnClickListener {
-            tvStatus.text = "กำลังอัปเดตข้อมูลล่าสุด..."
-            webView.loadUrl(targetUrl)
+            tvStatus.text = getString(R.string.status_updating)
+            webView.loadUrl(getTargetUrl())
         }
 
         btnToggleWeb.setOnClickListener {
             webContainer.visibility = View.VISIBLE
-            webView.loadUrl(targetUrl)
+            webView.loadUrl(getTargetUrl())
         }
 
         btnCloseWeb.setOnClickListener {
@@ -135,19 +153,44 @@ class MainActivity : AppCompatActivity() {
             scrapeUsageData()
         }
 
-        webView.loadUrl(targetUrl)
+        webView.loadUrl(getTargetUrl())
     }
 
     override fun onResume() {
         super.onResume()
+        applySystemBarAppearance()
         applyDisplayAdaptiveLayout()
         applyTitleGradient()
     }
 
     override fun onConfigurationChanged(newConfig: Configuration) {
         super.onConfigurationChanged(newConfig)
+        applySystemBarAppearance()
         applyDisplayAdaptiveLayout()
         applyTitleGradient()
+    }
+
+    // ปรับสีไอคอน Status Bar และ Navigation Bar ให้ตัดกับพื้นหลังทั้งโหมดสว่างและโหมดมืด
+    private fun applySystemBarAppearance() {
+        val nightModeFlags = resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK
+        val isDarkMode = nightModeFlags == Configuration.UI_MODE_NIGHT_YES
+
+        if (isDarkMode) {
+            enableEdgeToEdge(
+                statusBarStyle = SystemBarStyle.dark(Color.TRANSPARENT),
+                navigationBarStyle = SystemBarStyle.dark(Color.TRANSPARENT)
+            )
+        } else {
+            enableEdgeToEdge(
+                statusBarStyle = SystemBarStyle.light(Color.TRANSPARENT, Color.TRANSPARENT),
+                navigationBarStyle = SystemBarStyle.light(Color.TRANSPARENT, Color.TRANSPARENT)
+            )
+        }
+
+        WindowCompat.getInsetsController(window, window.decorView).apply {
+            isAppearanceLightStatusBars = !isDarkMode
+            isAppearanceLightNavigationBars = !isDarkMode
+        }
     }
 
     private fun applyTitleGradient() {
@@ -265,11 +308,11 @@ class MainActivity : AppCompatActivity() {
         val weeklyPct = pctMatches.getOrNull(1) ?: 0
 
         tvFiveHrMain.text = if (pctMatches.isNotEmpty()) "$fiveHrPct%" else "--%"
-        tvFiveHrSub.text = resetLines.getOrNull(0) ?: "กำลังรอเวลารีเซ็ต..."
+        tvFiveHrSub.text = resetLines.getOrNull(0) ?: getString(R.string.status_waiting_reset)
         pbAppFiveHr.progress = fiveHrPct.coerceIn(0, 100)
 
         tvWeeklyMain.text = if (pctMatches.size >= 2) "$weeklyPct%" else "--%"
-        tvWeeklySub.text = resetLines.getOrNull(1) ?: "กำลังรอเวลารีเซ็ต..."
+        tvWeeklySub.text = resetLines.getOrNull(1) ?: getString(R.string.status_waiting_reset)
         pbAppWeekly.progress = weeklyPct.coerceIn(0, 100)
     }
 
@@ -278,9 +321,13 @@ class MainActivity : AppCompatActivity() {
             (function() {
                 const text = document.body.innerText || "";
                 const lines = text.split('\n').map(l => l.trim()).filter(l => l.length > 0);
-                const matched = lines.filter(l => 
-                    l.includes('%') || l.includes('รีเซ็ต') || l.includes('Reset') || l.includes('ชั่วโมง') || l.includes('สัปดาห์')
-                );
+                const matched = lines.filter(l => {
+                    const lower = l.toLowerCase();
+                    return l.includes('%') ||
+                        l.includes('รีเซ็ต') || lower.includes('reset') ||
+                        l.includes('ชั่วโมง') || lower.includes('hour') ||
+                        l.includes('สัปดาห์') || lower.includes('week');
+                });
                 return matched.length > 0 ? matched.join('\n') : text.substring(0, 400);
             })();
         """.trimIndent()
@@ -288,16 +335,21 @@ class MainActivity : AppCompatActivity() {
         webView.evaluateJavascript(jsCode) { rawResult ->
             val cleanText = (JSONTokener(rawResult).nextValue() as? String)?.trim() ?: ""
 
-            if (cleanText.contains("ไม่ใช่โรบอต") || cleanText.contains("ผิดปกติ") || cleanText.contains("unusual traffic", ignoreCase = true)) {
+            if (
+                cleanText.contains("ไม่ใช่โรบอต") ||
+                cleanText.contains("not a robot", ignoreCase = true) ||
+                cleanText.contains("ผิดปกติ") ||
+                cleanText.contains("unusual traffic", ignoreCase = true)
+            ) {
                 webContainer.visibility = View.VISIBLE
-                tvStatus.text = "กรุณาติ๊กยืนยัน 'ไม่ใช่โรบอต' ในหน้าเว็บ"
+                tvStatus.text = getString(R.string.status_captcha_required)
                 return@evaluateJavascript
             }
 
             if (Regex("""\d+\s*%""").containsMatchIn(cleanText)) {
                 val timeNow = SimpleDateFormat("HH:mm", Locale.getDefault()).format(Date())
                 renderQuotaUI(cleanText)
-                tvStatus.text = "อัปเดตล่าสุดเมื่อ $timeNow"
+                tvStatus.text = getString(R.string.status_last_updated, timeNow)
 
                 getSharedPreferences("gemini_usage_prefs", MODE_PRIVATE)
                     .edit()
@@ -307,7 +359,7 @@ class MainActivity : AppCompatActivity() {
 
                 GeminiUsageWidget.updateAllWidgets(this)
             } else {
-                tvStatus.text = "ยังดึงค่าไม่ได้ (คงค่าเดิมไว้) ลองกด 'หน้าล็อกอิน'"
+                tvStatus.text = getString(R.string.status_fetch_failed)
             }
         }
     }

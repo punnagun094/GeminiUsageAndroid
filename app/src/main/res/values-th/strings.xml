@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">GeminiUsage</string>
+
+    <!-- Main Screen & Status -->
+    <string name="status_syncing">กำลังซิงค์ข้อมูล...</string>
+    <string name="status_login_required">กรุณายืนยันตัวตน / ล็อกอินในหน้าเว็บ</string>
+    <string name="status_reading_page">กำลังอ่านค่าจากหน้าเว็บ...</string>
+    <string name="status_updating">กำลังอัปเดตข้อมูลล่าสุด...</string>
+    <string name="status_waiting_reset">กำลังรอเวลารีเซ็ต...</string>
+    <string name="status_captcha_required">กรุณาติ๊กยืนยัน \'ไม่ใช่โรบอต\' ในหน้าเว็บ</string>
+    <string name="status_last_updated">อัปเดตล่าสุดเมื่อ %1$s</string>
+    <string name="status_fetch_failed">ยังดึงค่าไม่ได้ (คงค่าเดิมไว้) ลองกด \'หน้าล็อกอิน\'</string>
+
+    <!-- Quota Labels -->
+    <string name="five_hr_cycle">รอบ 5 ชั่วโมง</string>
+    <string name="five_hr_cycle_short">รอบ 5 ชม.</string>
+    <string name="weekly_limit">ขีดจำกัดรายสัปดาห์</string>
+    <string name="weekly_limit_short">รายสัปดาห์</string>
+
+    <!-- Buttons -->
+    <string name="btn_refresh">รีเฟรชค่า</string>
+    <string name="btn_login_page">หน้าล็อกอิน</string>
+    <string name="btn_back_home">กลับหน้าหลัก</string>
+
+    <!-- Widget -->
+    <string name="widget_tap_to_refresh">แตะเพื่อรีเฟรช</string>
+    <string name="widget_updated_at">อัปเดต %1$s</string>
+</resources>

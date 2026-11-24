@@ -13,6 +13,7 @@ class GeminiUsageWidget : AppWidgetProvider() {
         super.onEnabled(context)
         UsageAlarmReceiver.scheduleNextSync(context)
     }
+
     override fun onUpdate(
         context: Context,
         appWidgetManager: AppWidgetManager,
@@ -55,14 +56,17 @@ class GeminiUsageWidget : AppWidgetProvider() {
                 .map { it.trim() }
                 .filter { it.contains("รีเซ็ต") || it.contains("Reset", ignoreCase = true) }
 
-            val fiveHrReset = resetLines.getOrNull(0) ?: "รอบ 5 ชม."
-            val weeklyReset = resetLines.getOrNull(1) ?: "ขีดจำกัดรายสัปดาห์"
+            val fiveHrReset = resetLines.getOrNull(0) ?: context.getString(R.string.five_hr_cycle_short)
+            val weeklyReset = resetLines.getOrNull(1) ?: context.getString(R.string.weekly_limit)
+
+            val updatedLabel = if (lastTime.isNotEmpty()) {
+                context.getString(R.string.widget_updated_at, lastTime)
+            } else {
+                context.getString(R.string.widget_tap_to_refresh)
+            }
 
             val views = RemoteViews(context.packageName, R.layout.widget_gemini_usage).apply {
-                setTextViewText(
-                    R.id.tvWidgetUpdated,
-                    if (lastTime.isNotEmpty()) "อัปเดต $lastTime" else "แตะเพื่อรีเฟรช"
-                )
+                setTextViewText(R.id.tvWidgetUpdated, updatedLabel)
                 setTextViewText(R.id.tvFiveHrReset, fiveHrReset)
                 setTextViewText(R.id.tvFiveHrPct, if (pctMatches.isNotEmpty()) "$fiveHrPct%" else "--%")
                 setProgressBar(R.id.pbFiveHr, 100, fiveHrPct.coerceIn(0, 100), false)

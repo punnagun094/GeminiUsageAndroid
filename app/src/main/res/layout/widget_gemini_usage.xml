@@ -28,7 +28,7 @@
             android:id="@+id/tvWidgetUpdated"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="แตะเพื่อรีเฟรช"
+            android:text="@string/widget_tap_to_refresh"
             android:textColor="#64748B"
             android:textSize="11sp" />
     </LinearLayout>
@@ -48,7 +48,7 @@
             android:layout_weight="1"
             android:ellipsize="end"
             android:maxLines="1"
-            android:text="รอบ 5 ชม."
+            android:text="@string/five_hr_cycle_short"
             android:textColor="#334155"
             android:textSize="12sp" />
 
@@ -87,7 +87,7 @@
             android:layout_weight="1"
             android:ellipsize="end"
             android:maxLines="1"
-            android:text="รายสัปดาห์"
+            android:text="@string/weekly_limit_short"
             android:textColor="#334155"
             android:textSize="12sp" />
 
